@@ -1,6 +1,9 @@
 {
   "name": "@mypdfcv/mcp-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "MCP server for generating professional resume PDFs using @mypdfcv packages",
   "type": "module",
   "bin": {
@@ -23,8 +26,8 @@
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
-    "@mypdfcv/i18n": "^0.1.0",
-    "@mypdfcv/pdf-core": "^0.1.0",
+    "@mypdfcv/i18n": "^1.0.0",
+    "@mypdfcv/pdf-core": "^1.0.0",
     "react": "^19.0.0",
     "zod": "^3.24.0"
   },
