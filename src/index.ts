@@ -8,7 +8,7 @@ import { tailorResumeSchema, tailorResume } from "./tools/tailor-resume.js";
 
 const server = new McpServer({
   name: "mypdfcv",
-  version: "1.0.1",
+  version: "1.1.0",
 });
 
 server.tool(
