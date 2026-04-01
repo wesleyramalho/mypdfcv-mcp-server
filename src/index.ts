@@ -6,7 +6,7 @@ import { generateResumeSchema, generateResume } from "./tools/generate-resume.js
 
 const server = new McpServer({
   name: "mypdfcv",
-  version: "1.0.0",
+  version: "1.0.1",
 });
 
 server.tool(

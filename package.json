@@ -1,6 +1,6 @@
 {
   "name": "@mypdfcv/mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -10,7 +10,8 @@
     "mypdfcv-mcp-server": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",
