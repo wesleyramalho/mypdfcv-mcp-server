@@ -82,6 +82,10 @@ export const generateResumeSchema = z.object({
     .enum(["en", "pt-BR", "es", "it", "zh", "ja", "de"])
     .optional()
     .describe("Language for section headers. Defaults to 'en'"),
+  sectionOrder: z
+    .array(z.enum(["summary", "experience", "education", "skills", "projects"]))
+    .optional()
+    .describe("Custom order of resume sections. Defaults to: summary, experience, education, skills, projects. Only sections with data are included."),
   outputPath: z
     .string()
     .optional()
@@ -165,13 +169,20 @@ export async function generateResume(input: GenerateResumeInput) {
     projects: baseData.projects.length > 0,
   };
 
-  // Build section order based on what's enabled
-  const sectionOrder: string[] = [];
-  if (baseData.sections.summary) sectionOrder.push("summary");
-  if (baseData.sections.experience) sectionOrder.push("experience");
-  if (baseData.sections.education) sectionOrder.push("education");
-  if (baseData.sections.skills) sectionOrder.push("skills");
-  if (baseData.sections.projects) sectionOrder.push("projects");
+  // Build section order: use custom order if provided, otherwise default
+  let sectionOrder: string[];
+  if (input.sectionOrder) {
+    sectionOrder = input.sectionOrder.filter(
+      (s) => baseData.sections[s as keyof typeof baseData.sections],
+    );
+  } else {
+    sectionOrder = [];
+    if (baseData.sections.summary) sectionOrder.push("summary");
+    if (baseData.sections.experience) sectionOrder.push("experience");
+    if (baseData.sections.education) sectionOrder.push("education");
+    if (baseData.sections.skills) sectionOrder.push("skills");
+    if (baseData.sections.projects) sectionOrder.push("projects");
+  }
   baseData.sectionOrder = sectionOrder;
 
   const now = new Date().toISOString();
